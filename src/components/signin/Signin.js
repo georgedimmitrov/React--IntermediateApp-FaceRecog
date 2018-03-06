@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 
 class Signin extends Component {
+  state = {
+    signInEmail: '',
+    signInPassword: ''
+  };
 
   onEmailChange = (event) => {
-    this.setState({signInEmail: event.target.value})
+    this.setState({ signInEmail: event.target.value });
   }
 
   onPasswordChange = (event) => {
-    this.setState({signInPassword: event.target.value})
+    this.setState({ signInPassword: event.target.value });
   }
 
   onSubmitSignIn = () => {
@@ -22,7 +26,7 @@ class Signin extends Component {
       .then(response => response.json())
       .then(user => {
         if (user.id) {
-          this.props.loadUser(user)
+          this.props.loadUser(user);
           this.props.onRouteChange('home');
         }
       })
@@ -60,7 +64,7 @@ class Signin extends Component {
             </fieldset>
             <div className="">
               <input
-                onClick={() => onRouteChange('home')}
+                onClick={() => this.onSubmitSignIn()}
                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Sign in"
